@@ -1,6 +1,5 @@
 var APIKey = "7ae6f66d2cf4fdbd254603d563937e4c";
 var searchBtnEl = $("#search-btn");
-var delBtnEl = $("#delete-btn");
 var recentListEl = $("#recent-list");
 var forecastEl = $("#forecast-list");
 var currentTempEl = $("#current-temp");
@@ -20,7 +19,6 @@ var weatherForecast = "";
 var searchInput = "";
 var imgID = "";
 
-//var thunderImg = 
 
 function init() {
     var APIUrl = "https://api.openweathermap.org/data/2.5/weather?q=Sydney" + "&appid=" + APIKey + "&units=metric";
@@ -120,7 +118,6 @@ function iconSwitch(currentWeatherData, weatherData){
             imgID = "50d";            
             break;
       }
-    //return imgID;
 }
 
 
@@ -202,6 +199,8 @@ function citySearch() {
 
             var filteredList =  (weatherData.list.length / 5);
 
+            forecastEl.text("");
+
             for (i = 5; i < weatherData.list.length; i = i + filteredList) {
                 console.log(imgID);
 
@@ -210,7 +209,7 @@ function citySearch() {
                 iconSwitch(weatherData)
 
 
-                
+                var forecastDate = weatherData.list[i].dt_txt.slice(0,10);
                 var forecastTemp = weatherData.list[i].main.temp;
                 var forecastWind = weatherData.list[i].wind.speed;
                 var forecastHumid = weatherData.list[i].main.humidity;
@@ -223,7 +222,7 @@ function citySearch() {
                 // + "<h4><img src='https://openweathermap.org/img/wn/01d@2x.png'><p style='font-weight: bolder;'>Temp: <span style='font-weight: 400;' id='current-temp'>" + forecastTemp + "°C</span></p><p style='font-weight: bolder;'>Wind: <span style='font-weight: 400;'  id='current-wind'></span></p><p style='font-weight: bolder;'>Humidity: <span style='font-weight: 400;'  id='current-humid'></span></p></article>");
 
                 var forecastContainer = document.createElement('article');
-                forecastContainer.setAttribute('class', 'col-sm border');
+                forecastContainer.setAttribute('class', 'w-100 col mx-3 bg-lighter border align-items-middle');
                 forecastContainer.setAttribute('id', 'forecast-container');
 
                 forecastEl.append(forecastContainer);
@@ -234,20 +233,23 @@ function citySearch() {
                 var forecastWindEl = document.createElement('p');
                 var forecastHumidEl = document.createElement('p');
 
-                var id = "forecast-temp" + i;
 
 
                 forecastIconEl.setAttribute('src', 'https://openweathermap.org/img/wn/' + imgID + '@2x.png');
 
-                forecastTempEl.setAttribute('id', id);
-                forecastTempEl = forecastTemp;
+                forecastDateEl = forecastDate;
+
+
+                forecastTempEl = "Temp: " + forecastTemp;
+                forecastWindEl = "\nWind Speed: " + forecastWind;
+                forecastHumidEl = "\nHumidity: " + forecastHumid;
 
 
                 forecastContainer.append(forecastDateEl);
                 forecastContainer.append(forecastIconEl);
                 forecastContainer.append(forecastTempEl);
-               // forecastContainer.append(forecastWindEl);
-                //forecastContainer.append(forecastHumidEl);
+                forecastContainer.append(forecastWindEl);
+                forecastContainer.append(forecastHumidEl);
 
 
         
@@ -294,7 +296,6 @@ $(document).on('keypress',function(event) {
 
 
 searchBtnEl.click(citySearch);
-//delBtnEl.click(deleteContainer);
 
 init();
 
