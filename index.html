@@ -46,32 +46,47 @@
           <div class="">
             <input id="search-btn" class="col-12 col-md-12 btn btn-primary btn-block mb-8" type="button" value="Search">
           </div>
+          <div class="">
+            <input id="delete-btn" class="col-12 col-md-12 btn btn-primary btn-block mb-8" type="button" value="Search">
+          </div>
           <hr>
           <aside class="">
             <ul class="recent-list">
-  
+              
+
             </ul>
-            <p1>hello</p1>
           </aside>
         </div>
 
         
 
-        <div class="col-12 col-md-9 px-3">
-          <div class="border border-dark p-2">
-            <h2 id="city-name-header">Sydney</h2>
-            <p>Temp: <span id="current-temp"></span></p>
-            <p>Wind: <span id="current-wind"></span></p>
-            <p>Humidity: <span id="current-humid"></span></p>
+        <div class="col-12 col-md-9">
+          <div class="row border border-dark p-2 text-center">
+            <div class="col-12 col-md-4">
+              <h2 id="city-name-header">Sydney</h2>
+              <p style="font-weight: bolder;">Temp: <span style="font-weight: 400;" id="current-temp"></span></p>
+              <p style="font-weight: bolder;">Wind: <span style="font-weight: 400;"  id="current-wind"></span></p>
+              <p style="font-weight: bolder;">Humidity: <span style="font-weight: 400;"  id="current-humid"></span></p>
+            </div>
+            <div class="col-12 col-md-8 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start">
+              <img id="current-icon" class='img rounded' alt="current-icon">
+            </div>
           </div>
+          
 
+          <section class="row border border-dark p-2 my-2">
+            <h3>5 Day Forecast: </h3>
+            <div id="forecast-list" class="row" >
+              
+            </div>
+          </section>
 
-
-
-
-
-
+          <section>
+          
+          </section>
         </div>
+
+       
 
       </section>
 
