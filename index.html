@@ -26,7 +26,7 @@
               <div class="row align-items-center">
                 <div class="text-center col-12 col-md-6">
                     <h1 class="display-3">Weathering heights</h1>
-                    <p class="h4">Check the weather from any city worldwide...</p>
+                    <p class="h4" style="font-weight:100;">Check the weather from any city worldwide...</p>
                 </div>
                 <div class="col-12 col-md-6 text-center">
                   <img class='img-fluid rounded' src="./assets/images/header-image.jpg" alt="header-image" style="height:200px;" />
@@ -40,8 +40,8 @@
       <section class="row my-4">
         <div class="col-12 col-md-3 p-3">
           <h2>Search for a city:</h2>
-          <div id="search-input">          
-            <input class="col-12 col-md-12" style="margin-bottom: 8px;" type="text" placeholder="Search...">
+          <div>          
+            <p><input id="search-input" class="col-12 col-md-12" style="margin-bottom: 8px;" type="text" placeholder="Search..."></p>
           </div>
           <div class="">
             <input id="search-btn" class="col-12 col-md-12 btn btn-primary btn-block mb-8" type="button" value="Search">
@@ -58,11 +58,11 @@
         
 
         <div class="col-12 col-md-9 px-3">
-          <div class="col-12 col-md-12 border border-dark p-2">
+          <div class="border border-dark p-2">
             <h2 id="city-name-header">Sydney</h2>
-            <p>Temp: <span class="main-temp"></span></p>
-            <p>Wind: <span class="main-wind"></span></p>
-            <p>Humidity: <span class="main-humid"></span></p>
+            <p>Temp: <span id="current-temp"></span></p>
+            <p>Wind: <span id="current-wind"></span></p>
+            <p>Humidity: <span id="current-humid"></span></p>
           </div>
 
 
