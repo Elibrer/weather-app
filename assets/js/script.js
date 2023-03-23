@@ -15,13 +15,12 @@ var currentIconEl = $("#current-icon");
 console.log(searchInputEl);
 
 var cityNameHeaderEl = $("#city-name-header");
-var cityNameHeader = cityNameHeaderEl.text();
 var currentBool = true;
 var weatherForecast = "";
 var searchInput = "";
 var imgID = "";
 
-var recentCities = [];
+var recentCitiesArr = [];
 
 
 
@@ -33,17 +32,16 @@ function init() {
     var storedRecentCities = JSON.parse(localStorage.getItem("recentSearch"));
     console.log(storedRecentCities)
     if (storedRecentCities !== null) {
-         recentCities = storedRecentCities;
+        recentCitiesArr = [...new Set(storedRecentCities)];
     }
 
-    //recentCities.reverse();
-
     
-    recentCities.sort(function (a, b) {
+
+    recentCitiesArr.sort(function (a, b) {
         return b.score - a.score;
     });
-    renderCityBtns();
 
+    renderCityBtns();
 
     fetch(APIUrl , {
         method: 'GET', 
@@ -57,30 +55,14 @@ function init() {
     currentTempEl.text(data.main.temp + "°C")
     currentWindEl.text(data.wind.speed + "km/h")
     currentHumidEl.text(data.main.humidity + "%")
-    if (data.weather[0].main == "Clouds") {
-        console.log("Cloudy");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/02d@2x.png")
-    } else if (data.weather[0].main == "Thunderstorm") {
-        console.log("Thunderstorm");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/11d@2x.png")
-    } else if (data.weather[0].main == "Drizzle") {
-        console.log("Drizzle");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/09d@2x.png")
-    } else if (data.weather[0].main == "Rain") {
-        console.log("Rain");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/10d@2x.png")
-    } else if (data.weather[0].main == "Snow") {
-        console.log("Snow");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/13d@2x.png")
-    } else if (data.weather[0].main == "Clear") {
-        console.log("Clear");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/01d@2x.png")
-    } else {
-        console.log("Mist/Smoke/Haze/Dust/Fog/Sand/Ash/Squall/Tornado");
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/50d@2x.png")
-    }
-    });
+    weatherMain = data.weather[0].main;
+    
+    iconSwitch(data);
+
+
+     });
 }
+
 
 
 //Selects icon based on current weather data
@@ -116,60 +98,20 @@ function iconSwitch(currentWeatherData, weatherData){
         default:
             imgID = "50d";            
             break;
-      }
+    }
+
+    currentIconEl.attr("src", "https://openweathermap.org/img/wn/" + imgID + "@2x.png");
+
 }
 
-// switch (weatherMain) {
-    //     case "Clouds":
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/02d@2x.png");
-    //         break;
-    //     case "Thunderstorm":
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/11d@2x.png");
-    //         break;
-    //     case "Drizzle":
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/09d@2x.png");
-    //         break;
-    //     case "Rain":
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/10d@2x.png");
-    //         break;
-    //     case "Snow":
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/13d@2x.png");
-    //         break;
-    //     case "Clear":
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/01d@2x.png");
-    //         break;
-    //     default:
-    //         currentIconEl.attr("src", "https://openweathermap.org/img/wn/50d@2x.png");
-    //         break;
-    //   }
-    // return imgID;
-
-// function deleteContainer(forecastContainer) {
-//     console.log("delete?");
-//     forecastContainer.text("");
-
-// }
-
-
-
-
 function citySearch() {
-
-   
-
-
-
-    //event.preventDefault();
     currentIconEl.removeAttr("src");
-
     var searchInput = searchInputEl.val();
 
     if (!searchInput) {
         alert('Please enter a value into the search bar.');
         return;
     }
-
-    
 
 
     var APIUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey + "&units=metric";
@@ -200,11 +142,6 @@ function citySearch() {
         currentBool = true;
 
         iconSwitch(currentWeatherData);
-        console.log(imgID);
-        currentIconEl.attr("src", "https://openweathermap.org/img/wn/" + imgID + "@2x.png");
-        //currentIconEl.attr("style", "width: 10rem; height: auto;");
-
-
 
         cityNameHeaderEl.text(searchInput);
 
@@ -232,7 +169,7 @@ function citySearch() {
             currentBool = false;
 
             var filteredList =  (weatherData.list.length / 5);
-
+            forecastEl.innerHTML = "";
             forecastEl.text("");
 
             for (i = 5; i < weatherData.list.length; i = i + filteredList) {
@@ -242,37 +179,6 @@ function citySearch() {
 
                 iconSwitch(weatherData)
 
-
-                // var forecastDate = weatherData.list[i].dt_txt.slice(0,10);
-                // var forecastTemp = weatherData.list[i].main.temp;
-                // var forecastWind = weatherData.list[i].wind.speed;
-                // var forecastHumid = weatherData.list[i].main.humidity;
-                // console.log("Weather curently is: " + forecastTemp);
-                
-                // var forecastContainer = document.createElement('article');
-                // forecastContainer.setAttribute('class', 'w-100 col mx-3 bg-lighter border align-items-middle');
-                // forecastContainer.setAttribute('id', 'forecast-container');
-
-                // forecastEl.append(forecastContainer);
-
-                // var forecastDateEl = document.createElement('h4');
-                // var forecastIconEl = document.createElement('img');
-                // var forecastTempEl = document.createElement('p');
-                // var forecastWindEl = document.createElement('p');
-                // var forecastHumidEl = document.createElement('p');
-
-                // forecastDateEl = forecastDate;
-                // forecastIconEl.setAttribute('src', 'https://openweathermap.org/img/wn/' + imgID + '@2x.png');
-                // forecastTempEl = "Temp: " + forecastTemp;
-                // forecastWindEl = "\nWind Speed: " + forecastWind;
-                // forecastHumidEl = "\nHumidity: " + forecastHumid;
-
-                // forecastContainer.append(forecastDateEl);
-                // forecastContainer.append(forecastIconEl);
-                // forecastContainer.append(forecastTempEl);
-                // forecastContainer.append(forecastWindEl);
-                // forecastContainer.append(forecastHumidEl);
-
                 var forecastData = weatherData.list[i];
                 var forecastDate = forecastData.dt_txt.slice(0, 10);
                 var forecastTemp = forecastData.main.temp;
@@ -280,10 +186,12 @@ function citySearch() {
                 var forecastHumid = forecastData.main.humidity;
 
                 var forecastContainer = document.createElement('article');
-                forecastContainer.setAttribute('class', 'w-100 col mx-1 bg-lighter border align-items-middle');
+                forecastContainer.setAttribute('class', 'p-2 bg-lighter border align-items-middle');
                 forecastContainer.setAttribute('id', 'forecast-container');
+                forecastEl.attr('class', 'text-center d-flex flew-row justify-content-between p-3')
                 forecastEl.append(forecastContainer);
 
+                //The ` character... super handy!
                 forecastContainer.innerHTML = `
                     <h4>${forecastDate}</h4>
                     <img src="https://openweathermap.org/img/wn/${imgID}@2x.png">
@@ -292,39 +200,31 @@ function citySearch() {
                     <p>Humidity: ${forecastHumid}</p>
                 `;
 
-        
-
             }
-
-        //    for (var i = 0; i < currentQuestion.choices.length; i++) {
-        //     // create new button for each choice
-        //     var choice = currentQuestion.choices[i];
-        //     var choiceNode = document.createElement('button');
-        //     choiceNode.setAttribute('class', 'choice');
-        //     choiceNode.setAttribute('value', choice);
-        
-        //     choiceNode.textContent = i + 1 + '. ' + choice;
-        
-        //     // display on the page
-        //     choicesEl.appendChild(choiceNode);
-        //   }
-
-
-
-
         })
-
     })
     .catch((error) => {
         console.error("There has been a problem with your fetch operation:", error);
         alert("Please enter a valid city name");
     });
-
-    
-
-
 };
 
+
+
+
+function recentBtnPress(event) {
+    
+    var recentBtns = event.target;
+
+    var buttonContent = recentBtns.textContent;
+
+    console.log(buttonContent)
+    searchInputEl.val(buttonContent);
+
+    //recentCitiesArr = [...new Set(recentCitiesArr)];
+
+    citySearch();
+}
 
 
 function renderCityBtns() {
@@ -333,12 +233,13 @@ function renderCityBtns() {
 
     var uniqueCities = {};
   
-    for (let i = recentCities.length - 1; i >= 0; i--) {
-        var recentCity = recentCities[i];
+    //For loop to sort the appended buttons in the reverse order, keeping most recent at top
+    for (var i = recentCitiesArr.length - 1; i >= 0; i--) {
+        console.log(i)
+        var recentCity = recentCitiesArr[i];
   
         if (!uniqueCities[recentCity]) {
 
-        console.log(uniqueCities);
         var cityBtn = document.createElement('button');
         cityBtn.textContent = recentCity;
         cityBtn.setAttribute('data-index', i);
@@ -349,47 +250,15 @@ function renderCityBtns() {
         recentListEl.append(cityBtn);
       } else {
 
-        recentCities.splice(i, 1);
+        recentCitiesArr.splice(i, 1);
 
-        recentCities.unshift(recentCity);
+        recentCitiesArr.unshift(recentCity);
       }
     }
   }
 
-
-
-
-// function renderCityBtns() {
-    
-//     searchInputEl.val('');
-//     recentListEl.html('');
-
-
-//     for (var i = 0; i < recentCities.length; i++) {
-    
-//         recentCity = recentCities[i];
-
-
-    
-        
-
-//         var cityBtn = document.createElement("button");
-//         cityBtn.textContent = recentCity;
-
-        
-        
-
-
-//         cityBtn.setAttribute("data-index", i);
-//         cityBtn.setAttribute('class', 'col-12 btn btn-secondary m-1 ')
-        
-
-//         recentListEl.append(cityBtn);
-//     }
-// }
-
 function storeRecent() {
-    localStorage.setItem("recentSearch", JSON.stringify(recentCities));
+    localStorage.setItem("recentSearch", JSON.stringify(recentCitiesArr));
 }
 
 function storeItems () {
@@ -401,27 +270,17 @@ function storeItems () {
     cityText = cityText.charAt(0).toUpperCase() + cityText.slice(1);
     console.log(cityText);
 
-    
-    recentCities.push(cityText);
-
-
-    //console.log(recentCitiesReversed);
+    recentCitiesArr.push(cityText);
 
     searchInputEl.value = "";
-    return(recentCities)  
+    return(recentCitiesArr)  
 };
 
 function displayDate() {
     var currentDate = dayjs().format('YY-MM-DD hh:mm:ss'); 
-    //var currentTime = dayjs().format(''); 
-
     currentDateEl.text(currentDate);
-    //curentTimeEl.text(currentTime);
-
     setInterval(displayDate, 1000);
 }
-
-
 
 
 $(document).on('keypress',function(event) {
@@ -434,8 +293,5 @@ $(document).on('keypress',function(event) {
 
 
 searchBtnEl.click(citySearch);
-
+recentListEl.click(recentBtnPress);
 init();
-
-
-

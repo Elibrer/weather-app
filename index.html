@@ -38,7 +38,7 @@
 
     <main class="container">
       <section class="row my-4">
-        <div class="d-block col-12 col-md-3 p-3 mx-3">
+        <div class="d-block col-12 col-md-3 p-3">
           <h2>Search for a city:</h2>
           <div>          
             <p><input id="search-input" class="col-12 col-md-12" style="margin-bottom: 8px;" type="text" placeholder="Search..."></p>
@@ -53,29 +53,30 @@
           </aside>
         </div>
 
-        
+        <div class="col-12 col-md-1"></div>
 
-        <div class="d-block float-right col-12 col-md-8 mx-3">
-          <div class="bg-lighter row  p-2 text-center">
-            <div class="col-12 col-md-4">
-              <h2 id="city-name-header" class="display-3">Sydney<span></span></h2>
+        <div class="container col-md-8">
+          <div class="row bg-lighter  px-5 py-2 ">
+            <div class="col-12 col-md-6 text-center">
+              
+                <h2 id="city-name-header" class="display-4 m-0 p-0">Sydney</h2>
+                <img id="current-icon" class='img rounded' alt="current-icon" style="width: 35%;">
+              
               <p style="font-weight: bolder;">Temp: <span style="font-weight: 400;" id="current-temp"></span></p>
               <p style="font-weight: bolder;">Wind: <span style="font-weight: 400;"  id="current-wind"></span></p>
               <p style="font-weight: bolder;">Humidity: <span style="font-weight: 400;"  id="current-humid"></span></p>
             </div>
-            <div class="col-12 col-md-2 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start">
-              <img id="current-icon" class='img rounded' alt="current-icon">
-            </div>
-            <div class="col-12 col-md-6 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start display-4">
+            <!-- <div class="p-0 col-12 col-md-2 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start">   -->
+            <!-- </div> -->
+            <div class="col-12 col-md-6 d-flex flex-wrap text-center align-items-center justify-content-center justify-content-sm-start display-4">
               <p id="current-date" class="mb-0">hello</p>
             </div>
           </div>
           
 
-          <section class="bg-dark row border border-dark p-2 my-2">
-            <h3 class="text-light">5 Day Forecast: </h3>
-            <div id="forecast-list" class="row text-center" >
-              
+          <section class="row bg-dark p-2 my-3">
+            <h3 class="text-light m-0 p-1">5 Day Forecast: </h3>
+            <div id="forecast-list">
             </div>
           </section>
         </div>
