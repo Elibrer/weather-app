@@ -38,7 +38,7 @@
 
     <main class="container">
       <section class="row my-4">
-        <div class="col-12 col-md-3 p-3">
+        <div class="d-block col-12 col-md-3 p-3 mx-3">
           <h2>Search for a city:</h2>
           <div>          
             <p><input id="search-input" class="col-12 col-md-12" style="margin-bottom: 8px;" type="text" placeholder="Search..."></p>
@@ -47,26 +47,27 @@
             <input id="search-btn" class="col-12 col-md-12 btn btn-primary btn-block mb-8" type="button" value="Search">
           </div>
           <hr>
-          <aside class="">
-            <ul class="recent-list">
-              
-
+          <aside>
+            <ul class="p-0" id="recent-list">
             </ul>
           </aside>
         </div>
 
         
 
-        <div class="col-12 col-md-9">
+        <div class="d-block float-right col-12 col-md-8 mx-3">
           <div class="bg-lighter row  p-2 text-center">
             <div class="col-12 col-md-4">
-              <h2 id="city-name-header">Sydney</h2>
+              <h2 id="city-name-header" class="display-3">Sydney<span></span></h2>
               <p style="font-weight: bolder;">Temp: <span style="font-weight: 400;" id="current-temp"></span></p>
               <p style="font-weight: bolder;">Wind: <span style="font-weight: 400;"  id="current-wind"></span></p>
               <p style="font-weight: bolder;">Humidity: <span style="font-weight: 400;"  id="current-humid"></span></p>
             </div>
-            <div class="col-12 col-md-8 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start">
+            <div class="col-12 col-md-2 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start">
               <img id="current-icon" class='img rounded' alt="current-icon">
+            </div>
+            <div class="col-12 col-md-6 d-flex flex-wrap align-items-center justify-content-center justify-content-sm-start display-4">
+              <p id="current-date" class="mb-0">hello</p>
             </div>
           </div>
           
@@ -77,26 +78,8 @@
               
             </div>
           </section>
-
-          <section>
-          
-          </section>
         </div>
-
-       
-
       </section>
-
-
-
-
-
-    
-    
-    
-    
-    
-    
     </main>
 
 
@@ -107,7 +90,11 @@
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
+    ></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
