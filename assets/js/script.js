@@ -124,14 +124,27 @@ $(function () {
                     iconSwitch(weatherData)
 
                     var forecastData = weatherData.list[i];
-                    var forecastDate = forecastData.dt_txt.slice(0, 10);
+                    //var forecastDate = forecastData.dt_txt.slice(0, 10);
+
+                    var forecastYear = forecastData.dt_txt.slice(2, 4);
+                    var forecastMonth = forecastData.dt_txt.slice(5, 7);
+                    var forecastDay = forecastData.dt_txt.slice(8, 10);
+
+                    console.log(forecastYear);
+                    console.log(forecastDay);
+                    console.log(forecastMonth);
+
+                    var forecastDate = forecastDay + "/" + forecastMonth + "/" + forecastYear;
+
+
+
                     var forecastTemp = forecastData.main.temp;
                     forecastTemp = Math.round(forecastTemp);
                     var forecastWind = forecastData.wind.speed;
                     var forecastHumid = forecastData.main.humidity;
 
                     var forecastContainer = document.createElement('article');
-                    forecastContainer.setAttribute('class', 'p-2 bg-lighter border align-items-middle');
+                    forecastContainer.setAttribute('class', 'w-100 p-2 bg-lighter border align-items-middle');
                     forecastContainer.setAttribute('id', 'forecast-container');
                     forecastEl.attr('class', 'text-center d-flex flex-column flex-lg-row justify-content-between p-3')
                     forecastEl.append(forecastContainer);
@@ -261,7 +274,7 @@ $(function () {
 
     //Function to display current date and time.
     function displayDate() {
-        var currentDate = dayjs().format('YY-MM-DD hh:mm:ss'); 
+        var currentDate = dayjs().format('DD/MM/YY hh:mm:ss'); 
         currentDateEl.text(currentDate);
         setInterval(displayDate, 1000);
     }
