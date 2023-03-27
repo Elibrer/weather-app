@@ -44,14 +44,12 @@ This repository contains the code base for an online work day planner. Within th
 ## Credits
 
 ### *Resources utilised from various websites:*
+[Checking duplicate values within an array](https://sentry.io/answers/how-do-i-check-if-an-array-includes-a-value-in-javascript/)
+[Switch statements within Javascript](https://www.programiz.com/javascript/switch-statement)
 
-https://sentry.io/answers/how-do-i-check-if-an-array-includes-a-value-in-javascript/
+[Bootstrap website, used for all style and formatting purposes within the application](https://getbootstrap.com/docs/4.0/layout/overview/)
 
-https://www.programiz.com/javascript/switch-statement
-
-https://getbootstrap.com/docs/4.0/layout/overview/
-
-https://blog.bitsrc.io/double-quotes-vs-single-quotes-vs-backticks-in-javascript-3cab5aaea55
+[Understanding what the ` character does. Very useful!](https://blog.bitsrc.io/double-quotes-vs-single-quotes-vs-backticks-in-javascript-3cab5aaea55)
 
 [JavaScript library for accessing time and date](https://day.js.org/)
 

@@ -127,7 +127,7 @@ $(function () {
                     var forecastContainer = document.createElement('article');
                     forecastContainer.setAttribute('class', 'p-2 bg-lighter border align-items-middle');
                     forecastContainer.setAttribute('id', 'forecast-container');
-                    forecastEl.attr('class', 'text-center d-flex flew-row justify-content-between p-3')
+                    forecastEl.attr('class', 'text-center d-flex flex-column flex-lg-row justify-content-between p-3')
                     forecastEl.append(forecastContainer);
 
                     //The ` character... super handy! Can be used same as " and ', however the statement
