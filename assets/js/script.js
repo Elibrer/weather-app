@@ -124,16 +124,10 @@ $(function () {
                     iconSwitch(weatherData)
 
                     var forecastData = weatherData.list[i];
-                    //var forecastDate = forecastData.dt_txt.slice(0, 10);
 
                     var forecastYear = forecastData.dt_txt.slice(2, 4);
                     var forecastMonth = forecastData.dt_txt.slice(5, 7);
                     var forecastDay = forecastData.dt_txt.slice(8, 10);
-
-                    console.log(forecastYear);
-                    console.log(forecastDay);
-                    console.log(forecastMonth);
-
                     var forecastDate = forecastDay + "/" + forecastMonth + "/" + forecastYear;
 
 

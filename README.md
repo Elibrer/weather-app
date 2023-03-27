@@ -13,32 +13,45 @@ https://elibrer.github.io/weather-app/
 
 ## Description
 
-This repository contains the code base for an online work day planner. Within the website a user may enter  
+This repository contains the code base for an online weather application, which displays current weather data alongside a five day forecast. The user may then go back and press any of the buttons that relate to their recent searches, and re-display the city weather information. 
+
+This project has increased my knowledge of libraries such as Bootstrap, as well as the implementation of API's to fetch data from other websites, to be used within the scope of the application.
 
 ## Table of Contents (Optional)
 
 - [Features](#features)
 - [Usage](#usage)
 - [Languages Used](#languages-used)
-- [Password Generator Preview](#weather-app-preview)
+- [Weather App Preview](#weather-app-preview)
 - [Credits](#credits)
 
 ## Features
 
-- 
+- When the page loads, a default value of 'Sydney' is displayed, while showing the current time and date and relative data explained below.
+- Searching for a new city name in the input updates the application to display the new city name instead.
+- If an invalid city name is entered, the program will stop and an error alert will be shown.
+- The entered ciy name will always be saved with a capital first letter and lowercase letters following, regardless of what is entered.
+- Depending on what city has been selected, the application will show the current temperature, wind speed, and humidity percentage. Further, an icon image that represents the days weather conditions is displayed.
+- Underneath the current weather data shows five cards that display the weather forecast for the next five days of the selected city, with the same information shown. 
+- When the search button is pressed, the city name is prepended to local storage within an array (prepended so most recent will always be at the beginning of the array), which is added to every time a new city is searched for.
+- Cities within this array will never be duplicated, however if a duplicate city name is entered, the old array entry is removed, and the new one is added to the beginning of the array, updating that entry as most recent.
+- A button element is created undernearth the search container for every value within the city array, with the name of the button relative to the index of the array.
+- Pressing the new buttons will update the program with the relative city name attached to the button, therefore displaying the data from that selected city once more.
+- Pressing the city name button will also reorder the city's name within the array, so it becomes the most recent index number, and therefore the button is prepended to the top of the list.
+- Pressing the clear button will delete all entries within local storage, and clear the existing city buttons.
 
 ## Usage
 
-
+This application is designed to give the user a simple and easy way to check the current and forecasted weather of a chosen city. The program is easy to use, and provides useful weather information which is nicely displayed on the page.
 
 ## Languages Used
 - ### **HTML**
 - ### **CSS**
 - ### **JavaScript**
 
-## Password Generator Preview
+## Weather App Preview
 
-![](./assets/images/weather-app-preview.png"weather app preview")
+![Image of the full weather app, displaying multiple recent cities searched, current date and time, a selected city name, and all relevant weather information for that city below.](./assets/images/weather-app-preview.png "weather app preview")
 
 
 ## Credits
