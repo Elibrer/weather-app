@@ -18,8 +18,7 @@ var currentIconEl = $("#current-icon");
 var cityNameHeaderEl = $("#city-name-header");
 var countryNameEl = $("#country-name");
 
-
-//Changable variable list.
+//Changing variable list.
 var searchInput = "Sydney";
 var initFinished = false;
 var currentBool = true;
@@ -33,7 +32,6 @@ $(function () {
     var recentCitiesArr = JSON.parse(localStorage.getItem("recentCities")) || [];
 
     function init() {
-
         displayDate();
         citySearch();
         //This for loop renders the buttons on page in reverse order, using the 
@@ -59,7 +57,7 @@ $(function () {
         citySearch(searchInput);
     }
 
-
+    //Function to fetch the current and forecasted weather data from the chosen city.
     function citySearch() {
         var APIUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey + "&units=metric";
 
@@ -77,6 +75,8 @@ $(function () {
         .then(function (currentWeatherData) {
             currentIconEl.removeAttr("src");
 
+            //Determining whether the page has run the initialising function
+            // so that it doesn't give the 'no cities entered' error upon page load.
             if (initFinished === true) {
                 storeItems (searchInput);
             }
@@ -93,6 +93,8 @@ $(function () {
 
             iconSwitch(currentWeatherData);
 
+            //Finding latitude and longitude of the inputted city, to be used
+            // within the 5 day forecast fetch. 
             var city = {
                 lat: currentWeatherData.coord.lat,
                 lon: currentWeatherData.coord.lon,
@@ -209,8 +211,6 @@ $(function () {
     //This function required so much trial and error... SO many different ways to sort and delete
     //elements, yet this was the only way that seemed to go exactly as I needed it to. 
     function storeItems (searchInput) {
-        
-        
         if (searchInput) {
             //New element setting cityArrIndex to the number value of whatever index searchInput exists
             //within recentCitiesArr (if it does exist within)

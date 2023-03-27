@@ -2,9 +2,9 @@
 An application to determine weather data of a chosen city, including a five day forecast.
 
 ![Languages Badge](https://img.shields.io/badge/Languages-3-blue)
-![HTML Badge](https://img.shields.io/badge/HTML-59%25-red)
-![JS Badge](https://img.shields.io/badge/JavaScript-31.3%25-yellow)
-![CSS Badge](https://img.shields.io/badge/CSS-9.7%25-blueviolet)
+![JS Badge](https://img.shields.io/badge/JavaScript-72.2%25-yellow)
+![HTML Badge](https://img.shields.io/badge/HTML-25%25-red)
+![CSS Badge](https://img.shields.io/badge/CSS-2.8%25-blueviolet)
 
 
 ## Deployment link
