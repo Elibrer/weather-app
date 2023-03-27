@@ -16,6 +16,8 @@ var currentHumidEl = $("#current-humid");
 var searchInputEl = $("#search-input");
 var currentIconEl = $("#current-icon");
 var cityNameHeaderEl = $("#city-name-header");
+var countryNameEl = $("#country-name");
+
 
 //Changable variable list.
 var searchInput = "Sydney";
@@ -80,6 +82,7 @@ $(function () {
             }
             
             cityNameHeaderEl.text(searchInput);
+            countryNameEl.text(currentWeatherData.sys.country)
 
             currentTempEl.text(currentWeatherData.main.temp + "°C")
             currentWindEl.text(currentWeatherData.wind.speed + "km/h")
