@@ -84,7 +84,9 @@ $(function () {
             cityNameHeaderEl.text(searchInput);
             countryNameEl.text(currentWeatherData.sys.country)
 
-            currentTempEl.text(currentWeatherData.main.temp + "°C")
+            currentTemp = currentWeatherData.main.temp;
+            currentTemp = Math.floor(currentTemp);
+            currentTempEl.text(currentTemp + "°C")
             currentWindEl.text(currentWeatherData.wind.speed + "km/h")
             currentHumidEl.text(currentWeatherData.main.humidity + "%")
             currentBool = true;
@@ -124,6 +126,7 @@ $(function () {
                     var forecastData = weatherData.list[i];
                     var forecastDate = forecastData.dt_txt.slice(0, 10);
                     var forecastTemp = forecastData.main.temp;
+                    forecastTemp = Math.round(forecastTemp);
                     var forecastWind = forecastData.wind.speed;
                     var forecastHumid = forecastData.main.humidity;
 
